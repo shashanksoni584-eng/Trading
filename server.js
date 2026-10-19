@@ -6,7 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const { ZAP_TOKEN_KEY, ZAP_SECRET_KEY, BASE_URL = 'http://localhost:3000', PRICE = 9, WHATSAPP_LINK = '' } = process.env;
+const { ZAP_TOKEN_KEY, ZAP_SECRET_KEY, PRICE = 9, WHATSAPP_LINK = '' } = process.env;
+const BASE_URL = process.env.BASE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL : 'http://localhost:3000');
 const ZAP = 'https://api.zapupi.com/api';   // verify endpoint names in your ZapUPI dashboard docs
 
 app.post('/api/pay', async (req, res) => {
@@ -35,4 +37,6 @@ app.get('/api/verify/:id', async (req, res) => {
   } catch (e) { res.json({ paid: false }); }
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('Running on', process.env.PORT || 3000));
+// Vercel uses the exported app; locally we listen on a port
+if (require.main === module) app.listen(process.env.PORT || 3000, () => console.log('Running on', process.env.PORT || 3000));
+module.exports = app;
