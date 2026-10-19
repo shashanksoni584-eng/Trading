@@ -1,0 +1,199 @@
+<!doctype html><html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prop Firm Masterclass – Iqshant Ladha</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#09060f;--card:#14101f;--line:#2a2340;--p:#7c4dff;--t:#f4f1fb;--m:#a79fc0}
+*{box-sizing:border-box;margin:0}
+body{font-family:Outfit,system-ui,sans-serif;background:radial-gradient(900px 500px at 50% -100px,#3b1f8f55,transparent),var(--bg);color:var(--t);padding-bottom:130px}
+.w{max-width:480px;margin:auto;padding:0 18px}
+section{padding:34px 0;border-bottom:1px solid #ffffff0d;text-align:center}
+.tag{font-size:12px;letter-spacing:.12em;color:#c9b8ff;font-weight:600}
+h1{font-size:26px;line-height:1.25;margin:12px 0}h1 b{color:#b794ff}h2{font-size:23px;margin-bottom:18px}
+p{color:var(--m);line-height:1.55}
+.hero img,.card img{width:100%;border-radius:18px;border:1px solid var(--line)}
+.hero img{margin-top:20px}
+.btn{display:block;width:100%;padding:16px;border:0;border-radius:14px;background:linear-gradient(135deg,#8a5cff,#6b3df0);color:#fff;font:600 17px Outfit;box-shadow:0 8px 30px #7c4dff55;cursor:pointer}
+.btn s{opacity:.6;margin:0 4px}
+.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.row img{width:82%;flex:none;scroll-snap-align:center;border-radius:14px;border:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;text-align:left;margin-top:14px}
+.card li{list-style:none;padding:8px 0 8px 26px;position:relative;color:#ddd6f0}
+.card li:before{content:"✓";position:absolute;left:0;color:#9d7bff}
+.no li:before{content:"✕";color:#777}
+.info{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.info div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px;text-align:left}
+summary{font-weight:600;cursor:pointer}details p{margin-top:8px;font-size:15px}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 18px calc(10px + env(safe-area-inset-bottom));background:#09060fe6;backdrop-filter:blur(10px);z-index:5}
+.bar .w{padding:0}
+#modal{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;z-index:9}
+#modal.on{display:flex}
+.sheet{background:var(--card);width:100%;max-width:480px;margin:auto;border-radius:22px 22px 0 0;padding:22px}
+input{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:1px solid var(--line);background:#0c0816;color:#fff;font:16px Outfit}
+.err{color:#ff7b7b;font-size:14px;min-height:18px}
+footer{padding:26px;text-align:center;color:#666;font-size:12px}
+
+#checkout{position:fixed;inset:0;z-index:20;background:#f3f5f7;overflow-y:auto;display:none;color:#0d1b4c;font-family:Outfit,system-ui,sans-serif}
+#checkout.on{display:block}
+#checkout .cw{max-width:480px;margin:0 auto;background:#fff;min-height:100%;padding:0 0 110px}
+#checkout .top{display:flex;align-items:center;padding:14px 18px}
+#checkout .x{border:0;background:none;font-size:26px;color:#0d1b4c;cursor:pointer}
+#checkout .mer{text-align:center;font-size:20px;font-weight:600;letter-spacing:.02em;padding:18px 20px 40px}
+#checkout h3{font-size:30px;line-height:1.2;padding:0 22px;color:#0d1b4c}
+#checkout .bar2{width:56px;height:5px;background:#2f6fe4;margin:24px 22px}
+#checkout .desc{padding:0 22px 28px;font-size:18px;line-height:1.55;color:#2b3560}
+#checkout .sec{border-top:1px solid #e6e9ee;padding:28px 22px}
+#checkout .sec h4{font-size:19px;margin-bottom:12px;color:#0d1b4c}
+#checkout .sec p{color:#5a6384;line-height:1.55;font-size:16px}
+#checkout .ct{display:flex;gap:14px;align-items:center;margin-top:12px;font-size:17px;color:#2b3560}
+#checkout a{color:#2f6fe4;text-decoration:none}
+#checkout .foot{background:#f3f5f7;padding:28px 22px;border-top:1px solid #e6e9ee}
+#checkout .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:24px;color:#0d1b4c;margin-bottom:14px}
+#checkout .brand img{width:44px;height:44px;border-radius:50%}
+#checkout .nx{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));width:calc(100% - 36px);max-width:444px;padding:16px;border:0;border-radius:6px;background:linear-gradient(#3a7bf0,#2162d9);color:#fff;font:600 20px Outfit;box-shadow:0 8px 24px #2f6fe455;cursor:pointer}
+#checkout .nx:disabled{opacity:.7}
+#checkout .f{padding:0 22px}
+#checkout label{display:block;font-size:14px;color:#5a6384;margin:16px 0 6px}
+#checkout input{width:100%;padding:14px;border:1px solid #cfd5e1;border-radius:8px;font:17px Outfit;color:#0d1b4c;background:#fff}
+#checkout .amt{display:flex;justify-content:space-between;background:#f3f5f7;border-radius:8px;padding:14px;margin-top:22px;font-weight:600}
+#checkout .pe{color:#d33;font-size:14px;min-height:20px;margin-top:10px}
+#checkout .gw{text-align:center;padding:40px 22px}
+#checkout .gw img{width:90px;border-radius:50%}
+details{padding:0;overflow:hidden}details summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px}
+details summary::-webkit-details-marker{display:none}details p{padding:0 18px 18px;margin:0}
+summary i{flex:none;width:34px;height:34px;border-radius:50%;background:#26212f;position:relative}
+summary i:before,summary i:after{content:"";position:absolute;left:10px;right:10px;top:16px;height:2px;background:#fff;transition:.2s}
+summary i:after{transform:rotate(90deg)}details[open] summary i:after{transform:rotate(0)}details[open] summary i:before{transform:rotate(45deg)}details[open] summary i:after{transform:rotate(-45deg)}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:22px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:40px;padding:10px 20px;text-align:left}
+.pill small{display:block;font-size:11px;letter-spacing:.14em;color:var(--m)}.pill b{font-size:16px}
+.cdp,.cdl{font-size:12px;letter-spacing:.14em;color:var(--m);font-weight:600}.cdl{text-align:center;margin-bottom:8px}
+.cdp{display:inline-block;margin-bottom:18px;padding:12px 22px;border:1px solid #5c2630;background:#2a1118;border-radius:40px}
+.cd{color:#ff5a5f;font-size:15px;margin-left:6px}
+.ring{box-shadow:0 0 0 9px #7c4dff33,0 8px 30px #7c4dff55}</style></head><body>
+
+<div class="w">
+<section class="hero">
+  <div class="tag">ATTENTION: PROP FIRM TRADERS</div>
+  <h1>Learn my <b>Liquidity Sniper</b> Strategy &amp; trade for your first payout</h1>
+  <p>2-hour live masterclass · rule-based, risk-first prop firm trading</p>
+  <img src="img/me.jpg" alt="Iqshant Ladha">
+</section>
+
+<section>
+  <img src="img/avatar.jpg" width="110" style="border-radius:50%;border:2px solid var(--p)" alt="">
+  <h2 style="margin-top:12px;margin-bottom:4px">IQSHANT LADHA</h2>
+  <div class="tag">PROP FIRM TRADER &amp; MENTOR</div>
+  <div class="info">
+    <div>📅 <span class="d1">Wed, 21 Oct 2026</span></div><div>🕖 7:00 PM IST</div><div>🔴 Live · ₹9</div>
+  </div>
+</section>
+
+<section>
+  <h2>My Payouts</h2>
+  <div class="row"><img src="img/p1.jpg" alt="Payout"><img src="img/p2.jpg" alt="Payout"><img src="img/p3.jpg" alt="Payout"></div>
+  <button class="btn" style="margin-top:20px" onclick="openPay()">Join the workshop · <s>₹999</s> ₹9</button>
+</section>
+
+<section>
+  <h2>Is this right for you?</h2>
+  <div class="card"><div class="tag">THIS IS FOR YOU IF…</div><ul>
+    <li>You've failed or breached prop-firm challenges</li>
+    <li>You can trade but lack consistency</li>
+    <li>You want a clear strategy + risk framework</li>
+    <li>Your goal is evaluation → funded → payout</li></ul></div>
+  <div class="card no"><div class="tag">NOT FOR YOU IF…</div><ul>
+    <li>You want signals or guaranteed profits</li>
+    <li>You won't follow risk rules</li></ul></div>
+</section>
+
+<section>
+  <h2>3 things you'll walk away with</h2>
+  <div class="card"><b>01 · The Liquidity Sniper setup</b><p>How to read liquidity and wait for high-quality entries.</p></div>
+  <div class="card"><b>02 · Risk framework for prop firms</b><p>Fixed risk per trade, daily-loss and drawdown rules.</p></div>
+  <div class="card"><b>03 · Roadmap from challenge to payout</b><p>A step-by-step plan instead of repeatedly buying new challenges.</p></div>
+</section>
+
+<section><h2>Frequently Asked Questions</h2><details><summary>Do I need trading experience to join?<i></i></summary><p>No. The masterclass starts from the basics and builds up to the full rule-based framework, step by step, in plain language.</p></details><details><summary>What will I learn in these 2 hours?<i></i></summary><p>A payout-focused strategy for prop-firm accounts, how to structure risk around prop-firm rules, and a step-by-step roadmap from evaluation to funded account to first payout.</p></details><details><summary>Is ₹9 really the price?<i></i></summary><p>Yes. The regular price is ₹999 — this is a limited-time ₹9 offer so it’s a no-brainer to attend live.</p></details><details><summary>How do I join after registering?<i></i></summary><p>The moment your payment goes through you get the private WhatsApp community link. The live session link and reminders are shared there.</p></details><details><summary>Is this tips, signals or guaranteed profits?<i></i></summary><p>No. It is educational and process-first — no tips, no signals, no assured returns. You learn a system and execute it yourself. Trading involves risk.</p></details><details><summary>What if I can’t attend live?<i></i></summary><p>Come live if you possibly can — that’s where the value is. If you register and miss it, watch the WhatsApp community for replay or next-batch details.</p></details></section>
+<section>
+  <h2>Your SEAT is One Click Away</h2>
+  <div class="pills"><div class="pill"><small>DATE</small><b><span class="d1">Wed, 21 Oct 2026</span></b></div><div class="pill"><small>TIME</small><b>7:00 PM IST</b></div><div class="pill"><small>FORMAT</small><b>Live · <s>₹999</s> ₹9</b></div></div>
+  <div class="cdp">⏱ OFFER PRICE ENDS IN <b class="cd">--:--:--</b></div>
+  <button class="btn ring" onclick="openPay()">Join now · <s>₹999</s> ₹9</button>
+</section>
+</div>
+
+<footer>© 2026 Trade with Iqshant<br>© 2026 Trade with Iqshant · Educational content only, not financial advice. Trading involves risk; past payouts don't guarantee future results.</footer>
+
+<div class="bar"><div class="w"><div class="cdl">⏱ OFFER PRICE ENDS IN <b class="cd">--:--:--</b></div><button class="btn" onclick="openPay()">Join now · <s>₹999</s> ₹9</button></div></div>
+
+<div id="checkout"><div class="cw">
+ <div class="top"><button class="x" onclick="closePay()" aria-label="Close">←</button></div>
+ <div id="s1">
+  <div class="mer">METROL MEDIA LLP</div>
+  <h3>Liquidity Sniper Masterclass</h3><div class="bar2"></div>
+  <div class="desc">Join Iqshant Ladha’s live 2-hour masterclass and learn a rule-based trading strategy, prop-firm risk management framework, and a step-by-step approach from challenge to funded account and payout. Live session on <span class="d2">21 October 2026</span> at 7:00 PM IST.</div>
+  <div class="sec"><h4>Contact Us:</h4>
+   <div class="ct"><svg width="26" height="26" viewBox="0 0 24 24" fill="#0d1b4c"><path d="M2 5h20v14H2z" opacity=".15"/><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>support@tradewithiqshant.com</div>
+   <div class="ct"><svg width="26" height="26" viewBox="0 0 24 24" fill="#0d1b4c"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1z"/></svg>+918527112800</div></div>
+  <div class="sec"><h4>Terms &amp; Conditions:</h4><p>You agree to share information entered on this page with METROL MEDIA LLP (owner of this page) and Zap UPI, adhering to applicable laws.</p><p style="margin-top:14px"><a href="#">Merchant’s business policies ↗</a></p></div>
+  <div class="foot"><div class="brand"><img src="img/zapupi.png" alt="">Zap UPI</div>
+   <p style="color:#5a6384;line-height:1.6;font-size:17px">Want to create page like this for your Business? Visit <a href="https://zapupi.com/" target="_blank" rel="noopener">Zap UPI</a> to get started!</p>
+   <p style="margin-top:14px"><a href="#" style="font-weight:600">⚑ Report Page</a></p></div>
+  <button class="nx" onclick="step(2)">NEXT</button>
+ </div>
+ <div id="s2" style="display:none">
+  <div class="mer" style="padding-bottom:10px">METROL MEDIA LLP</div>
+  <h3 style="font-size:24px">Payment Details</h3><div class="bar2"></div>
+  <div class="f">
+   <label>Full name</label><input id="cname" autocomplete="name" placeholder="Your name">
+   <label>WhatsApp / mobile number</label><input id="cmobile" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10 digit number">
+   <label>Email (optional)</label><input id="cemail" type="email" autocomplete="email" placeholder="you@email.com">
+   <div class="amt"><span>Liquidity Sniper Masterclass</span><span>₹9.00</span></div>
+   <div class="pe" id="perr"></div>
+  </div>
+  <button class="nx" id="paybtn" onclick="pay()">Pay ₹9 · Zap UPI</button>
+ </div>
+ <div id="s3" style="display:none"></div>
+</div></div>
+
+<script>
+const $=id=>document.getElementById(id);
+function openPay(){$('checkout').classList.add('on');$('checkout').scrollTop=0;step(1);document.body.style.overflow='hidden'}
+function closePay(){if($('s2').style.display==='block'){step(1);return}$('checkout').classList.remove('on');document.body.style.overflow=''}
+function step(n){$('s1').style.display=n==1?'block':'none';$('s2').style.display=n==2?'block':'none';$('checkout').scrollTop=0}
+async function pay(){
+  const e=$('perr'),b=$('paybtn');e.textContent='';
+  const name=$('cname').value.trim(),mobile=$('cmobile').value.trim(),email=$('cemail').value.trim();
+  if(!name){e.textContent='Naam daalo';return}
+  if(!/^[6-9]\d{9}$/.test(mobile)){e.textContent='Valid 10-digit mobile daalo';return}
+  b.disabled=true;b.textContent='Opening Zap UPI gateway…';
+  try{
+    const r=await fetch('/api/pay',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,mobile,email})});
+    const d=await r.json();
+    if(!d.url)throw new Error(d.error||'Gateway error');
+    if(window.saveLead){try{await window.saveLead({name,mobile,email,order_id:d.order_id,amount:9})}catch(_){}}
+    location.href=d.url;
+  }catch(x){e.textContent=x.message;b.disabled=false;b.textContent='Pay ₹9 · Zap UPI'}
+}
+</script>
+<script>
+/* Offer restarts for the NEXT real batch. Set FIRST = first webinar start, EVERY = days between batches.
+   After a session starts, the countdown and all dates roll to the next batch automatically.
+   Only keep this if you really run a session on those dates. */
+const FIRST=new Date('2026-10-21T19:00:00+05:30'),EVERY=7;
+const p=n=>String(n).padStart(2,'0');
+function nextBatch(){let t=FIRST.getTime();const now=Date.now(),step=EVERY*864e5;
+ if(now>=t)t+=Math.ceil((now-t+1)/step)*step;return new Date(t)}
+function tick(){const T=nextBatch();let s=Math.max(0,Math.floor((T-Date.now())/1000));const d=Math.floor(s/86400);s%=86400;
+ const t=(d?d+'d ':'')+p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60);
+ const f=o=>new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',...o}).format(T);
+ const d1=f({weekday:'short'})+', '+f({day:'numeric'})+' '+f({month:'short'})+' '+f({year:'numeric'});
+ const d2=f({day:'numeric'})+' '+f({month:'long'})+' '+f({year:'numeric'});
+ document.querySelectorAll('.cd').forEach(x=>x.textContent=t);
+ document.querySelectorAll('.d1').forEach(x=>x.textContent=d1);
+ document.querySelectorAll('.d2').forEach(x=>x.textContent=d2)}
+tick();setInterval(tick,1000);
+</script>
+<script type="module">import {saveLead} from './firebase.js';window.saveLead=saveLead;</script></body></html>
