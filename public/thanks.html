@@ -1,0 +1,11 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Payment</title><body style="background:#09060f;color:#fff;font-family:system-ui;text-align:center;padding:80px 20px">
+<h1 id=t>Payment verify ho raha hai…</h1><p id=s style="color:#a79fc0"></p><a id=l style="display:none;margin-top:24px;padding:16px 28px;background:#25D366;color:#fff;border-radius:12px;text-decoration:none;font-weight:600">Join WhatsApp Community</a>
+<script>
+const id=new URLSearchParams(location.search).get('order_id');
+fetch('/api/verify/'+id).then(r=>r.json()).then(d=>{
+ t.textContent=d.paid?'✅ Registration confirmed!':'❌ Payment complete nahi hua';
+ s.textContent=d.paid?'WhatsApp community join karo, live link wahin milega.':'Dobara try karein.';
+ if(d.paid&&d.link){l.href=d.link;l.style.display='inline-block'}
+});
+</script>
